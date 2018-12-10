@@ -4,6 +4,7 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: Player
     21300002: Shadow
+    21300004: Projectile
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -143,6 +144,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 0d8f177306366dc40ae6ceb118db25e4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1612
+        width: 301
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c1a6969ee6ea1346bfc316d906a5f8e
       vertices: []
       indices: 
       edges: []
