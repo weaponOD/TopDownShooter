@@ -9,22 +9,30 @@ public class Player : MonoBehaviour {
 
     private Controller2D controller;
     private CameraController cameraController;
+    private InputController inputController;
     private PlayerSprites sprites;
 
-    private Vector2 velocity;
-
-    private void Awake()
+    public void Init(CameraController cameraController, InputController inputController)
     {
         controller = GetComponent<Controller2D>();
-        cameraController = Camera.main.GetComponent<CameraController>();
+        this.cameraController = cameraController;
+        this.inputController = inputController;
+        inputController.axisInput += UpdateVelocity;
+
         sprites = GetComponent<PlayerSprites>();
-        sprites.Init(cameraController);
+        sprites.Init(cameraController, inputController);
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        inputController.axisInput -= UpdateVelocity;
+    }
+
+    private void UpdateVelocity(Vector2 velocity)
+    {
         velocity = Vector2.ClampMagnitude(velocity, 1);
-        controller.Move(velocity * moveSpeed * Time.deltaTime);
+        velocity *= moveSpeed * Time.deltaTime;
+
+        controller.Move(ref velocity);
     }
 }
