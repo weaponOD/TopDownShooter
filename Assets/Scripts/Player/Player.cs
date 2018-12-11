@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 
     private Vector2 velocity;
 
-    private void Start()
+    private void Awake()
     {
         controller = GetComponent<Controller2D>();
         cameraController = Camera.main.GetComponent<CameraController>();

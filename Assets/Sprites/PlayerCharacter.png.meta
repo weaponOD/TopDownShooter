@@ -5,6 +5,8 @@ TextureImporter:
     21300000: Player
     21300002: Shadow
     21300004: Projectile
+    21300006: Small Grass
+    21300008: Large GRass
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -164,6 +166,46 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 5c1a6969ee6ea1346bfc316d906a5f8e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Small Grass
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 1706
+        width: 330
+        height: 221
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 516c683785f6c4f4ca6188c51875b60b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Large GRass
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 1567
+        width: 548
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edef3067907af0a4d9d77227148a1748
       vertices: []
       indices: 
       edges: []

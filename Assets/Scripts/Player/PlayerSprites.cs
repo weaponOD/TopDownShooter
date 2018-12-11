@@ -24,13 +24,11 @@ public class PlayerSprites : MonoBehaviour
 
     private void UpdatePlayerFacing()
     {
-        if (playerSprite)
-        {
-            if (cameraController.GetMousePosition().x < playerSprite.position.x)
-                playerSpriteRenderer.flipX = true;
-            else
-                playerSpriteRenderer.flipX = false;
-        }
+        if (cameraController.GetMousePosition().x < playerSprite.position.x)
+            playerSpriteRenderer.flipX = true;
+        else
+            playerSpriteRenderer.flipX = false;
+
     }
 
     private void UpdateWeaponFacing()
