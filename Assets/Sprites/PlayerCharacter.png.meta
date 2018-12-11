@@ -2,11 +2,16 @@ fileFormatVersion: 2
 guid: f423adc18b297924ca0b039e4681e017
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Player
+    21300000: Player-Body
     21300002: Shadow
     21300004: Projectile
     21300006: Small Grass
     21300008: Large GRass
+    21300010: Player-Head
+    21300012: Player-LeftArm
+    21300014: Player-RightAr
+    21300016: Player-RightLeg
+    21300018: Player-LeftLeg
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -111,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player
+      name: Player-Body
       rect:
         serializedVersion: 2
-        x: 740
-        y: 596
-        width: 576
-        height: 858
+        x: 785
+        y: 697
+        width: 476
+        height: 479
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,7 +184,7 @@ TextureImporter:
         width: 330
         height: 221
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -199,13 +204,113 @@ TextureImporter:
         width: 548
         height: 205
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: edef3067907af0a4d9d77227148a1748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player-Head
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1002
+        width: 386
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db329360acd43fe4fa7d0b999b7eb3ce
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player-LeftArm
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 709
+        width: 178
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be556c5daf6de434a8c67b313af48050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player-RightAr
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 716
+        width: 206
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91329be4b6e897f45910a5e3f9bb90ae
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player-RightLeg
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 568
+        width: 125
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6f7b86786b582743bb29dad6d352bec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player-LeftLeg
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 568
+        width: 148
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8d6c5cddc8cfc3458633495b9ad5301
       vertices: []
       indices: 
       edges: []
