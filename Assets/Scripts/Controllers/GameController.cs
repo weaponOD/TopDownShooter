@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour
 
         cameraController.Init(player.transform);
         inputController.Init(gameSettings);
-        player.Init(cameraController, inputController);
+        player.Init(cameraController);
     }
 
     private void MissingControllerMessage(string controllerName)

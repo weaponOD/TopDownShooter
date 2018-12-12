@@ -9,21 +9,19 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 6f;
 
     private Controller2D controller;
-    private CameraController cameraController;
-    private InputController inputController;
     private PlayerSprites sprites;
-    private Animator playerAnimator;
 
-    public void Init(CameraController cameraController, InputController inputController)
+    public void Init(CameraController cameraController)
     {
-        playerAnimator = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
-        this.cameraController = cameraController;
-        this.inputController = inputController;
-        InputController.axisInput += UpdateVelocity;
 
         sprites = GetComponent<PlayerSprites>();
-        sprites.Init(cameraController, inputController);
+        sprites.Init(cameraController);
+    }
+
+    private void OnEnable()
+    {
+        InputController.axisInput += UpdateVelocity;
     }
 
     private void OnDisable()

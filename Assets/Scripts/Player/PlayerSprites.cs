@@ -8,12 +8,10 @@ public class PlayerSprites : MonoBehaviour
     [SerializeField] private Transform weaponSprite;
 
     private CameraController cameraController;
-    private InputController inputController;
 
-    public void Init(CameraController cameraController, InputController inputController)
+    public void Init(CameraController cameraController)
     {
         this.cameraController = cameraController;
-        this.inputController = inputController;
     }
 
     void Update()

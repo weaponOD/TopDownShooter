@@ -48,7 +48,6 @@ public class Controller2D : MonoBehaviour
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
 
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
-
             if (hit)
             {
                 velocity.x = (hit.distance - SKIN_WIDTH) * directionX;
@@ -68,9 +67,6 @@ public class Controller2D : MonoBehaviour
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
 
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
-
-            Debug.DrawRay(raycastOrigins.bottomLeft + Vector2.right * verticalRaySpacing * i, Vector2.up * -2, Color.red);
-
             if (hit)
             {
                 velocity.y = (hit.distance - SKIN_WIDTH) * directionY;
