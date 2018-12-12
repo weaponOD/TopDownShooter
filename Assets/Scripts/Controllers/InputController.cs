@@ -7,9 +7,10 @@ public enum KeyInputType { Down, Held, Up }
 
 public class InputController : MonoBehaviour
 {
-    public static event Action<Vector2> axisInput = delegate { };
-    public static event Action<KeyInputType> shootInput = delegate { };
-    public static event Action<KeyInputType> dodgeInput = delegate { };
+    public static event Action<Vector2> AxisInput = delegate { };
+    public static event Action AxisUp = delegate { };
+    public static event Action<KeyInputType> ShootInput = delegate { };
+    public static event Action<KeyInputType> DodgeInput = delegate { };
 
     private GameSettings gameSettings;
 
@@ -31,28 +32,31 @@ public class InputController : MonoBehaviour
     private void CheckAxisInput()
     {
         if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+        {
+            AxisUp.Invoke();
             return;
+        }
 
-        axisInput.Invoke(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+        AxisInput.Invoke(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
     }
 
     private void CheckShootInput()
     {
         if (Input.GetKeyDown(gameSettings.shootKey))
-            shootInput.Invoke(KeyInputType.Down);
+            ShootInput.Invoke(KeyInputType.Down);
         else if (Input.GetKey(gameSettings.shootKey))
-            shootInput.Invoke(KeyInputType.Held);
+            ShootInput.Invoke(KeyInputType.Held);
         else if (Input.GetKeyUp(gameSettings.shootKey))
-            shootInput.Invoke(KeyInputType.Up);
+            ShootInput.Invoke(KeyInputType.Up);
     }
 
     private void CheckDodgeInput()
     {
         if (Input.GetKeyDown(gameSettings.dodgeKey))
-            dodgeInput.Invoke(KeyInputType.Down);
+            DodgeInput.Invoke(KeyInputType.Down);
         else if (Input.GetKey(gameSettings.dodgeKey))
-            dodgeInput.Invoke(KeyInputType.Held);
+            DodgeInput.Invoke(KeyInputType.Held);
         else if (Input.GetKeyUp(gameSettings.dodgeKey))
-            dodgeInput.Invoke(KeyInputType.Up);
+            DodgeInput.Invoke(KeyInputType.Up);
     }
 }
