@@ -9,10 +9,12 @@ public class PlayerSprites : MonoBehaviour
 
     private SpriteRenderer[] playerSpriteRenderers;
     private CameraController cameraController;
+    private InputController inputController;
 
-    public void Init(CameraController cameraController)
+    public void Init(CameraController cameraController, InputController inputController)
     {
         this.cameraController = cameraController;
+        this.inputController = inputController;
        // playerSpriteRenderers = playerSprite.GetComponentsInChildren<SpriteRenderer>();
     }
 
@@ -24,6 +26,9 @@ public class PlayerSprites : MonoBehaviour
 
     private void UpdatePlayerFacing()
     {
+        if (cameraController == null)
+            return;
+
         if (cameraController.GetMousePosition().x < playerSprite.position.x)
         {
             //playersprite.localpos.x *- playersprite.localpos.x
@@ -42,6 +47,8 @@ public class PlayerSprites : MonoBehaviour
 
     private void UpdateWeaponFacing()
     {
+        if (cameraController == null)
+            return;
         //if (weaponSprite)
         //{
         //    if (cameraController.GetMousePosition().x < weaponSprite.position.x)

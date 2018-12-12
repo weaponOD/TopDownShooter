@@ -10,32 +10,43 @@ public class Player : MonoBehaviour
 
     private Controller2D controller;
     private CameraController cameraController;
+    private InputController inputController;
     private PlayerSprites sprites;
     private Animator playerAnimator;
 
-    private Vector2 velocity;
-
-    private void Awake()
+    public void Init(CameraController cameraController, InputController inputController)
     {
-        playerAnimator = GetComponent<Animator>();
-        controller = GetComponent<Controller2D>();
-        cameraController = Camera.main.GetComponent<CameraController>();
-        sprites = GetComponent<PlayerSprites>();
-        sprites.Init(cameraController);
-    }
+    //    playerAnimator = GetComponent<Animator>();
+    //    controller = GetComponent<Controller2D>();
+    //    this.cameraController = cameraController;
+    //    this.inputController = inputController;
+    //    inputController.axisInput += UpdateVelocity;
 
-    private void Update()
-    {
-        velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        velocity = Vector2.ClampMagnitude(velocity, 1);
-        controller.Move(velocity * moveSpeed * Time.deltaTime);
+    //    sprites = GetComponent<PlayerSprites>();
+    //    sprites.Init(cameraController, inputController);
+    //}
 
-        bool result = velocity > 0 ? true : false;
-    }
+    //private void OnDisable()
+    //{
+    //    inputController.axisInput -= UpdateVelocity;
+    //}
 
-    private bool HandleAnims(float v)
-    {
-       bool result = v > 0 ?  true :  false;
+    //private void UpdateVelocity(Vector2 velocity)
+    //{
+    //    velocity = Vector2.ClampMagnitude(velocity, 1);
 
-    }
+    //    controller.Move(velocity * moveSpeed * Time.deltaTime);
+
+    //    bool result = velocity > 0 ? true : false;
+    //}
+
+    //private bool HandleAnims(float v)
+    //{
+    //    bool result = v > 0 ? true : false;
+
+    //    v *= moveSpeed * Time.deltaTime;
+
+    //    controller.Move(ref velocity);
+
+    //}
 }
