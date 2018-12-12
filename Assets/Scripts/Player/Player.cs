@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerSprites))]
+[RequireComponent(typeof(PlayerAnimation))]
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
 
     private Controller2D controller;
     private PlayerSprites sprites;
+    private PlayerAnimation playerAnimation;
 
     public void Init(CameraController cameraController)
     {
@@ -17,16 +19,19 @@ public class Player : MonoBehaviour
 
         sprites = GetComponent<PlayerSprites>();
         sprites.Init(cameraController);
+
+        playerAnimation = GetComponent<PlayerAnimation>();
+        playerAnimation.Init();
     }
 
     private void OnEnable()
     {
-        InputController.axisInput += UpdateVelocity;
+        InputController.AxisInput += UpdateVelocity;
     }
 
     private void OnDisable()
     {
-        InputController.axisInput -= UpdateVelocity;
+        InputController.AxisInput -= UpdateVelocity;
     }
 
     private void UpdateVelocity(Vector2 velocity)
