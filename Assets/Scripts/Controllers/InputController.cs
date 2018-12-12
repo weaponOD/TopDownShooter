@@ -6,10 +6,10 @@ using System;
 public enum KeyInputType { Down, Held, Up }
 
 public class InputController : MonoBehaviour
-{   
-    public Action<Vector2> axisInput;
-    public Action<KeyInputType> shootInput;
-    public Action<KeyInputType> dodgeInput;
+{
+    public static event Action<Vector2> axisInput = delegate { };
+    public static event Action<KeyInputType> shootInput = delegate { };
+    public static event Action<KeyInputType> dodgeInput = delegate { };
 
     private GameSettings gameSettings;
 

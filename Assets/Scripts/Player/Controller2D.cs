@@ -24,7 +24,7 @@ public class Controller2D : MonoBehaviour
         CalculateRaySpacing();
     }
 
-    public void Move(ref Vector2 velocity)
+    public void Move(Vector2 velocity)
     {
         UpdateRaycastOrigins();
 

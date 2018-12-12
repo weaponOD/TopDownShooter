@@ -7,7 +7,6 @@ public class PlayerSprites : MonoBehaviour
     [SerializeField] private Transform playerSprite;
     [SerializeField] private Transform weaponSprite;
 
-    private SpriteRenderer[] playerSpriteRenderers;
     private CameraController cameraController;
     private InputController inputController;
 
@@ -15,7 +14,6 @@ public class PlayerSprites : MonoBehaviour
     {
         this.cameraController = cameraController;
         this.inputController = inputController;
-       // playerSpriteRenderers = playerSprite.GetComponentsInChildren<SpriteRenderer>();
     }
 
     void Update()
@@ -30,32 +28,15 @@ public class PlayerSprites : MonoBehaviour
             return;
 
         if (cameraController.GetMousePosition().x < playerSprite.position.x)
-        {
-            //playersprite.localpos.x *- playersprite.localpos.x
-        }
-
-
-
-        //for (int i = 0; i < playerSpriteRenderers.Length - 1; i++)
-        //{
-        //    if (cameraController.GetMousePosition().x < playerSprite.position.x)
-        //        playerSpriteRenderers[i].flipX = true;
-        //    else
-        //        playerSpriteRenderers[i].flipX = false;
-        //}
+            playerSprite.localScale = new Vector3(-1, 1, 1);
+        else
+            playerSprite.localScale = new Vector3(1, 1, 1);
     }
 
     private void UpdateWeaponFacing()
     {
         if (cameraController == null)
             return;
-        //if (weaponSprite)
-        //{
-        //    if (cameraController.GetMousePosition().x < weaponSprite.position.x)
-        //        weaponSprite.localScale = new Vector3(-1, 1, 1);
-        //    else
-        //        weaponSprite.localScale = new Vector3(1, 1, 1);
-        //}
 
         //Point towards the mouse
         Vector3 pos = cameraController.GetScreenPoint(weaponSprite.position);
