@@ -5,10 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Controller2D : MonoBehaviour
 {
-    [SerializeField] private int horizontalRayCount = 4;
-    [SerializeField] private int verticalRayCount = 4;
+    private int horizontalRayCount;
+    private int verticalRayCount;
 
-    [SerializeField] private LayerMask collisionMask;
+    private LayerMask collisionMask;
 
     const float SKIN_WIDTH = 0.015f;
 
@@ -18,8 +18,12 @@ public class Controller2D : MonoBehaviour
     private BoxCollider2D boxCollider;
     private RaycastOrigins raycastOrigins;
 
-    private void Start()
+    public void Init(int horizontalRayCount, int verticalRayCount, LayerMask collisionMask)
     {
+        this.horizontalRayCount = horizontalRayCount;
+        this.verticalRayCount = verticalRayCount;
+        this.collisionMask = collisionMask;
+
         boxCollider = GetComponent<BoxCollider2D>();
         CalculateRaySpacing();
     }

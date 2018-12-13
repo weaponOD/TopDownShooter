@@ -42,21 +42,21 @@ public class InputController : MonoBehaviour
 
     private void CheckShootInput()
     {
-        if (Input.GetKeyDown(gameSettings.shootKey))
+        if (Input.GetMouseButtonDown(0))
             ShootInput.Invoke(KeyInputType.Down);
-        else if (Input.GetKey(gameSettings.shootKey))
+        else if (Input.GetMouseButton(0))
             ShootInput.Invoke(KeyInputType.Held);
-        else if (Input.GetKeyUp(gameSettings.shootKey))
+        else if (Input.GetMouseButtonUp(0))
             ShootInput.Invoke(KeyInputType.Up);
     }
 
     private void CheckDodgeInput()
     {
-        if (Input.GetKeyDown(gameSettings.dodgeKey))
+        if (Input.GetMouseButtonDown(1))
             DodgeInput.Invoke(KeyInputType.Down);
-        else if (Input.GetKey(gameSettings.dodgeKey))
+        else if (Input.GetMouseButton(1))
             DodgeInput.Invoke(KeyInputType.Held);
-        else if (Input.GetKeyUp(gameSettings.dodgeKey))
+        else if (Input.GetMouseButtonUp(1))
             DodgeInput.Invoke(KeyInputType.Up);
     }
 }

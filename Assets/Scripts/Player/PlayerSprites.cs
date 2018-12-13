@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerSprites : MonoBehaviour
 {
-    [SerializeField] private Transform playerSprite;
-    [SerializeField] private Transform weaponSprite;
+    private Transform playerSprite;
+    private Transform weaponSprite;
 
     private CameraController cameraController;
 
-    public void Init(CameraController cameraController)
+    public void Init(Transform playerSprite, Transform weaponSprite, CameraController cameraController)
     {
+        this.playerSprite = playerSprite;
+        this.weaponSprite = weaponSprite;
         this.cameraController = cameraController;
     }
 

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : MonoBehaviour
+{
     [Header("General Settings")]
     [SerializeField] protected float damage;
     [SerializeField] protected float moveSpeed;
@@ -21,11 +22,13 @@ public class Projectile : MonoBehaviour {
     public void Init(LayerMask damageLayer)
     {
         this.damageLayer = damageLayer;
+        lifeCount = 0f;
     }
 
     protected virtual void Update()
     {
         UpdateLifetime();
+        UpdatePosition();
     }
 
     protected virtual void UpdateLifetime()
@@ -33,14 +36,21 @@ public class Projectile : MonoBehaviour {
         if (lifetime == 0)
             return;
 
-        if(lifeCount < lifetime)
+        if (lifeCount < lifetime)
         {
             lifeCount += Time.deltaTime;
             return;
         }
 
-        SimplePool.Spawn(lifeOverParticle, transform.position, Quaternion.identity);
+        if (lifeOverParticle)
+            SimplePool.Spawn(lifeOverParticle, transform.position, Quaternion.identity);
+
         Remove();
+    }
+
+    protected virtual void UpdatePosition()
+    {
+        transform.position += transform.right * moveSpeed * Time.deltaTime;
     }
 
     protected virtual void Remove()
@@ -51,8 +61,11 @@ public class Projectile : MonoBehaviour {
     protected virtual void HitTarget()
     {
         // Do damage stuff here
-        AudioSource.PlayClipAtPoint(impactSound, transform.position);
-        SimplePool.Spawn(impactParticle, transform.position, Quaternion.identity);
+        if (impactSound)
+            AudioSource.PlayClipAtPoint(impactSound, transform.position);
+
+        if (impactParticle)
+            SimplePool.Spawn(impactParticle, transform.position, Quaternion.identity);
         Remove();
     }
 }
