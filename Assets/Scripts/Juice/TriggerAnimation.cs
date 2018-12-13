@@ -6,7 +6,6 @@ public class TriggerAnimation : MonoBehaviour
 {
 
     [SerializeField] private string animTriggerName;
-    [SerializeField] private string triggererTag;
     private Animator objAnim;
 
     private void Start()
@@ -16,17 +15,16 @@ public class TriggerAnimation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.CompareTag(triggererTag))
-        //{
+        Debug.Log(other.name);
+
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log(other.name);
+
             objAnim.SetTrigger(animTriggerName);
-        //}
+
+            Debug.Log(objAnim.name);
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        //if (collision.gameObject.CompareTag(triggererTag))
-        //{
-            objAnim.SetTrigger(animTriggerName);
-        //}
-    }
 }
