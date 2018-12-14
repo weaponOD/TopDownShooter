@@ -11,12 +11,16 @@ public class InputController : MonoBehaviour
     public static event Action AxisUp = delegate { };
     public static event Action<KeyInputType> ShootInput = delegate { };
     public static event Action<KeyInputType> DodgeInput = delegate { };
+    public static event Action<Vector2> CursorInput = delegate { };
 
     private GameSettings gameSettings;
+    private CameraController cameraController;
+    private Vector3 previousCursorPosition;
 
-    public void Init(GameSettings gameSettings)
+    public void Init(GameSettings gameSettings, CameraController cameraController)
     {
         this.gameSettings = gameSettings;
+        this.cameraController = cameraController;
     }
 
     private void Update()
@@ -27,6 +31,7 @@ public class InputController : MonoBehaviour
         CheckAxisInput();
         CheckShootInput();
         CheckDodgeInput();
+        CheckCursorInput();
     }
 
     private void CheckAxisInput()
@@ -58,5 +63,14 @@ public class InputController : MonoBehaviour
             DodgeInput.Invoke(KeyInputType.Held);
         else if (Input.GetMouseButtonUp(1))
             DodgeInput.Invoke(KeyInputType.Up);
+    }
+
+    private void CheckCursorInput()
+    {
+        if(previousCursorPosition != cameraController.GetMousePosition())
+        {
+            previousCursorPosition = cameraController.GetMousePosition();
+            CursorInput.Invoke(previousCursorPosition);
+        }
     }
 }

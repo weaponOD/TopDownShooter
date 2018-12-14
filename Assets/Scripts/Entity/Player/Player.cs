@@ -6,8 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimation))]
 [RequireComponent(typeof(PlayerWeapon))]
 [RequireComponent(typeof(Controller2D))]
-public class Player : MonoBehaviour
+public class Player : Entity
 {
+    [Header("Player Settings")]
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private int horizontalRayCount = 4;
@@ -27,13 +28,15 @@ public class Player : MonoBehaviour
     private PlayerAnimation playerAnimation;
     private PlayerWeapon playerWeapon;
 
-    public void Init(CameraController cameraController)
+    public override void Init()
     {
+        base.Init();
+
         controller = GetComponent<Controller2D>();
         controller.Init(horizontalRayCount, verticalRayCount, collisionMask);
 
         sprites = GetComponent<PlayerSprites>();
-        sprites.Init(playerSprite, weaponSprite, cameraController);
+        sprites.Init(playerSprite, weaponSprite);
 
         playerAnimation = GetComponent<PlayerAnimation>();
         playerAnimation.Init();

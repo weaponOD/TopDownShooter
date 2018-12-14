@@ -462,6 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ede936e4fd21294287a563a6bdc435f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthSettings: {fileID: 11400000, guid: 702e75a081bdebd45a63cc4d64abf429, type: 2}
   moveSpeed: 2
   horizontalRayCount: 4
   verticalRayCount: 4

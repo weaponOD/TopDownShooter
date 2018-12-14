@@ -17,15 +17,15 @@ public abstract class FireMode {
         UpdateShootReset(weaponSettings);
     }
 
-    public void Shoot(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, KeyInputType inputType)
+    public void Shoot(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer, KeyInputType inputType)
     {
         switch (inputType)
         {
             case KeyInputType.Down:
-                OnInputDown(weaponSettings, weaponBarrel, damageLayer);
+                OnInputDown(weaponSettings, weaponBarrel, damageLayer, firedByLayer);
                 break;
             case KeyInputType.Held:
-                OnInputHeld(weaponSettings, weaponBarrel, damageLayer);
+                OnInputHeld(weaponSettings, weaponBarrel, damageLayer, firedByLayer);
                 break;
             case KeyInputType.Up:
                 OnInputUp(weaponSettings);
@@ -35,15 +35,15 @@ public abstract class FireMode {
         }
     }
 
-    protected virtual void SpawnProjectile(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer)
+    protected virtual void SpawnProjectile(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer)
     {
         Projectile p = SimplePool.Spawn(weaponSettings.weaponInfo.projectile.gameObject, weaponBarrel.position, weaponBarrel.rotation).GetComponent<Projectile>();
-        p.Init(damageLayer);
+        p.Init(damageLayer, firedByLayer);
     }
 
-    protected virtual void OnInputDown(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer) { }
+    protected virtual void OnInputDown(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer) { }
 
-    protected virtual void OnInputHeld(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer) { }
+    protected virtual void OnInputHeld(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer) { }
 
     protected virtual void OnInputUp(WeaponSettings weaponSettings) {
         if (shouldReset == true)

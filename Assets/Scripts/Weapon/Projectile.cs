@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour
 {
     [Header("General Settings")]
-    [SerializeField] protected float damage;
+    [SerializeField] protected int damage;
     [SerializeField] protected float moveSpeed;
 
     [Header("Lifetime Settings")]
@@ -13,16 +14,23 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected GameObject lifeOverParticle;
 
     [Header("Impact Settings")]
+    [SerializeField] protected GameObject damageHitPartile;
+    [SerializeField] protected AudioClip damageAudio;
     [SerializeField] protected GameObject impactParticle;
-    [SerializeField] protected AudioClip impactSound;
+    [SerializeField] protected AudioClip impactAudio;
 
     protected float lifeCount;
     protected LayerMask damageLayer;
+    protected LayerMask firedByLayer;
 
-    public void Init(LayerMask damageLayer)
+    public void Init(LayerMask damageLayer, LayerMask firedByLayer)
     {
         this.damageLayer = damageLayer;
+        this.firedByLayer = firedByLayer;
+
         lifeCount = 0f;
+
+        GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
     protected virtual void Update()
@@ -58,14 +66,27 @@ public class Projectile : MonoBehaviour
         SimplePool.Despawn(gameObject);
     }
 
-    protected virtual void HitTarget()
+    protected virtual void Impacted(bool applyDamage, GameObject hitObject)
     {
-        // Do damage stuff here
-        if (impactSound)
-            AudioSource.PlayClipAtPoint(impactSound, transform.position);
+        if (applyDamage)
+        {
+            Entity hitEntity = hitObject.GetComponent<Entity>();
+            hitEntity.Damaged(damage);
+        }
 
-        if (impactParticle)
-            SimplePool.Spawn(impactParticle, transform.position, Quaternion.identity);
+
+        if (applyDamage && damageAudio || applyDamage == false && impactAudio)
+            AudioSource.PlayClipAtPoint(applyDamage ? damageAudio : impactAudio, transform.position);
+
+        if (applyDamage && damageHitPartile || applyDamage == false && impactParticle)
+            SimplePool.Spawn(applyDamage ? damageHitPartile : impactParticle, transform.position, Quaternion.identity);
+
         Remove();
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.layer != firedByLayer)
+            Impacted(damageLayer == (damageLayer | (1 << other.gameObject.layer)), other.gameObject);
     }
 }

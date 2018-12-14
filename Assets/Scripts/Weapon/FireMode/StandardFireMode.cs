@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StandardFireMode : FireMode
 {
-    protected override void OnInputDown(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer)
+    protected override void OnInputDown(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer)
     {
         if (canShoot == false)
             return;
@@ -17,10 +17,10 @@ public class StandardFireMode : FireMode
             return;
         }
 
-        SpawnProjectile(weaponSettings, weaponBarrel, damageLayer);
+        SpawnProjectile(weaponSettings, weaponBarrel, damageLayer, firedByLayer);
     }
     
-    protected override void OnInputHeld(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer)
+    protected override void OnInputHeld(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer)
     {
         if (shouldReset == true)
             return;
@@ -32,6 +32,6 @@ public class StandardFireMode : FireMode
         }
 
         shootCount = 0f;
-        SpawnProjectile(weaponSettings, weaponBarrel, damageLayer);
+        SpawnProjectile(weaponSettings, weaponBarrel, damageLayer, firedByLayer);
     }
 }

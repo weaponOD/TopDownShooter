@@ -76,7 +76,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void ShootInput(KeyInputType inputType)
     {
-        currentFireMode.Shoot(currentWeapon, weaponBarrel, damageLayer, inputType);
+        currentFireMode.Shoot(currentWeapon, weaponBarrel, damageLayer, gameObject.layer, inputType);
     }
 
     private void UpdateCurrnetWeapon()

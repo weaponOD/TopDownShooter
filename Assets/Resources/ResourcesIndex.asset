@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assets:
   - id: 1
-    assetPath: Weapons/01_WeaponList
+    assetPath: Weapons/01_PlayerWeaponList

@@ -6,28 +6,35 @@ public class PlayerSprites : MonoBehaviour
 {
     private Transform playerSprite;
     private Transform weaponSprite;
+    private Camera mainCam;
 
-    private CameraController cameraController;
-
-    public void Init(Transform playerSprite, Transform weaponSprite, CameraController cameraController)
+    public void Init(Transform playerSprite, Transform weaponSprite)
     {
         this.playerSprite = playerSprite;
         this.weaponSprite = weaponSprite;
-        this.cameraController = cameraController;
+
+        mainCam = Camera.main;
     }
 
-    void Update()
+    private void OnEnable()
     {
-        UpdatePlayerFacing();
+        InputController.CursorInput += UpdateFacing;
+    }
+
+    private void OnDisable()
+    {
+        InputController.CursorInput -= UpdateFacing;
+    }
+
+    private void UpdateFacing(Vector2 cursorPosition)
+    {
+        UpdatePlayerFacing(cursorPosition);
         UpdateWeaponFacing();
     }
 
-    private void UpdatePlayerFacing()
+    private void UpdatePlayerFacing(Vector2 cursorPosition)
     {
-        if (cameraController == null)
-            return;
-
-        if (cameraController.GetMousePosition().x < playerSprite.position.x)
+        if (cursorPosition.x < playerSprite.position.x)
             playerSprite.localScale = new Vector3(-1, 1, 1);
         else
             playerSprite.localScale = new Vector3(1, 1, 1);
@@ -35,11 +42,8 @@ public class PlayerSprites : MonoBehaviour
 
     private void UpdateWeaponFacing()
     {
-        if (cameraController == null)
-            return;
-
         //Point towards the mouse
-        Vector3 pos = cameraController.GetScreenPoint(weaponSprite.position);
+        Vector3 pos = mainCam.WorldToScreenPoint(weaponSprite.position);
         Vector3 dir = Input.mousePosition - pos;
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
