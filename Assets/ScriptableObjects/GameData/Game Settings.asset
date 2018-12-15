@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Name: Game Settings
   m_EditorClassIdentifier: 
   playerTag: Player
+  shootKey: 323
+  dodgeKey: 304
