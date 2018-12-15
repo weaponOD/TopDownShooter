@@ -4,44 +4,39 @@ using UnityEngine;
 
 public class HealthUI : MonoBehaviour
 {
-
     [SerializeField] private GameObject heartUIPrefab;
     [SerializeField] HealthSettings playerHealth;
-    private int health;
-    private int numHearts;
 
+    private int numHearts;
     List<HeartUI> hearts;
 
-    private GameObject heartUI;
-
-    // Use this for initialization
     void Start()
     {
-        health = playerHealth.maxHealth;
-
         PopulateHearts();
     }
 
-    void PopulateHearts()
+    private void PopulateHearts()
     {
-        numHearts = 0;
+        hearts = new List<HeartUI>();
+        numHearts = playerHealth.maxHealth;
 
-        for (int i = 0; i < health; i++)
+        for (int i = 0; i < numHearts; i++)
         {
-            hearts.Add(Instantiate(heartUIPrefab, this.transform).GetComponent<HeartUI>());
-            numHearts++;
-        }
+            HeartUI go = Instantiate(heartUIPrefab, this.transform).GetComponent<HeartUI>();
 
+            if (go)
+                hearts.Add(go);
+        }
         UpdateHearts();
     }
 
     private void UpdateHearts()
     {
+        if (numHearts > playerHealth.maxHealth) numHearts = playerHealth.maxHealth; 
 
-
-        for (int i = 0; i < health; i++)
+        for (int i = 0; i < hearts.Count; i++)
         {
-            if (i < numHearts)
+            if(i < playerHealth.maxHealth)
             {
                 hearts[i].heartFill.SetActive(true);
             }
@@ -51,10 +46,7 @@ public class HealthUI : MonoBehaviour
             }
         }
 
-
-
     }
-
 
     //private void Init(){
     // pop in anim of each heart, then inside fill up and small particle pop 
@@ -62,18 +54,17 @@ public class HealthUI : MonoBehaviour
     //
     //}
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            health--;
+            //remove health --;
             UpdateHearts();
         }
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-            health++;
+            //add health ++;
             UpdateHearts();
         }
 
