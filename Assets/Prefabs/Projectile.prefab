@@ -109,11 +109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a9de16e915837499007e3e439ad395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 1
   moveSpeed: 5
   lifetime: 10
   lifeOverParticle: {fileID: 0}
-  damageHitPartile: {fileID: 0}
+  damageHitPartile: {fileID: 1776347229004598, guid: 2291ac51ef6b77d4e93bc0c4fd38781c,
+    type: 2}
   damageAudio: {fileID: 0}
   impactParticle: {fileID: 1776347229004598, guid: 2291ac51ef6b77d4e93bc0c4fd38781c,
     type: 2}

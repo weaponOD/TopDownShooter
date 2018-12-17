@@ -11,10 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fab12adf7903144db78a236665a0e77, type: 3}
   m_Name: PuffHealthSettings
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 3
   damageParticle: {fileID: 0}
   damageSound: {fileID: 0}
   damageFlashColour: {r: 0.82745105, g: 0.18039216, b: 0.18039216, a: 1}
+  damageFlashTime: 0.025
   healParticle: {fileID: 0}
   healSound: {fileID: 0}
   deathParticle: {fileID: 0}

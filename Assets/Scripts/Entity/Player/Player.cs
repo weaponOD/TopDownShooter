@@ -20,13 +20,17 @@ public class Player : Entity
     [SerializeField] private LayerMask damageLayer;
 
     [Header("Sprites")]
-    [SerializeField] private Transform playerSprite;
     [SerializeField] private Transform weaponSprite;
 
+    [Header("UI")]
+    [SerializeField] private string heartTag;
+
     private Controller2D controller;
-    private PlayerSprites sprites;
+    private PlayerSprites playerSprites;
     private PlayerAnimation playerAnimation;
     private PlayerWeapon playerWeapon;
+
+    private HealthUI healthUI;
 
     public override void Init()
     {
@@ -35,14 +39,29 @@ public class Player : Entity
         controller = GetComponent<Controller2D>();
         controller.Init(horizontalRayCount, verticalRayCount, collisionMask);
 
-        sprites = GetComponent<PlayerSprites>();
-        sprites.Init(playerSprite, weaponSprite);
+        playerSprites = GetComponent<PlayerSprites>();
+        playerSprites.Init(sprites, weaponSprite);
 
         playerAnimation = GetComponent<PlayerAnimation>();
         playerAnimation.Init();
 
         playerWeapon = GetComponent<PlayerWeapon>();
         playerWeapon.Init(weaponSprite, startingWeaponId, damageLayer);
+
+        healthUI = GameObject.FindWithTag(heartTag).GetComponent<HealthUI>();
+        healthUI.Init(healthSettings.maxHealth);
+    }
+
+    public override void Damaged(int amount)
+    {
+        base.Damaged(amount);
+        healthUI.UpdateHearts(health.CurrentHealth);
+    }
+
+    public override void Healed(int amount)
+    {
+        base.Healed(amount);
+        healthUI.UpdateHearts(health.CurrentHealth);
     }
 
     private void OnEnable()

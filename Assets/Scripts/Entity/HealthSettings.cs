@@ -8,6 +8,7 @@ public class HealthSettings : ScriptableObject {
     public GameObject damageParticle;
     public AudioClip damageSound;
     public Color damageFlashColour;
+    public float damageFlashTime;
 
     [Header("Healing")]
     public GameObject healParticle;

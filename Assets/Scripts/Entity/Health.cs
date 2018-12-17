@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Health {
+    public int CurrentHealth { get { return currentHealth; } }
+
     protected int currentHealth;
     protected int maxHealth;
 

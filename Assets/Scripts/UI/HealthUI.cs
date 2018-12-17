@@ -5,38 +5,31 @@ using UnityEngine;
 public class HealthUI : MonoBehaviour
 {
     [SerializeField] private GameObject heartUIPrefab;
-    [SerializeField] HealthSettings playerHealth;
 
+    private int playerHealth;
     private int numHearts;
     List<HeartUI> hearts;
 
-    void Start()
+    private bool waitingOnSpawn;
+
+    public void Init(int playerHealth)
     {
-        PopulateHearts();
+        this.playerHealth = playerHealth;
+        StartCoroutine(PopulateHearts());
     }
 
-    private void PopulateHearts()
+    public void SpawnInFinish()
     {
-        hearts = new List<HeartUI>();
-        numHearts = playerHealth.maxHealth;
-
-        for (int i = 0; i < numHearts; i++)
-        {
-            HeartUI go = Instantiate(heartUIPrefab, this.transform).GetComponent<HeartUI>();
-
-            if (go)
-                hearts.Add(go);
-        }
-        UpdateHearts();
+        waitingOnSpawn = false;
     }
 
-    private void UpdateHearts()
+    public void UpdateHearts(int currentHealth)
     {
-        if (numHearts > playerHealth.maxHealth) numHearts = playerHealth.maxHealth; 
+        if (numHearts > playerHealth) numHearts = currentHealth;
 
         for (int i = 0; i < hearts.Count; i++)
         {
-            if(i < playerHealth.maxHealth)
+            if (i < currentHealth)
             {
                 hearts[i].heartFill.SetActive(true);
             }
@@ -45,29 +38,46 @@ public class HealthUI : MonoBehaviour
                 hearts[i].heartFill.SetActive(false);
             }
         }
-
     }
 
-    //private void Init(){
-    // pop in anim of each heart, then inside fill up and small particle pop 
-    //
-    //
-    //}
+    private IEnumerator PopulateHearts()
+    {
+        hearts = new List<HeartUI>();
+        numHearts = playerHealth;
+
+        for (int i = 0; i < numHearts; i++)
+        {
+            HeartUI go = Instantiate(heartUIPrefab, this.transform).GetComponent<HeartUI>();
+
+            if (go)
+            {
+                hearts.Add(go);
+                waitingOnSpawn = true;
+                go.Init(this);
+
+                while (waitingOnSpawn)
+                {
+                    yield return null;
+                }
+            }
+
+            
+        }
+        UpdateHearts(playerHealth);
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
             //remove health --;
-            UpdateHearts();
+            UpdateHearts(playerHealth);
         }
 
         if (Input.GetKeyDown(KeyCode.V))
         {
             //add health ++;
-            UpdateHearts();
+            UpdateHearts(playerHealth);
         }
-
-
     }
 }

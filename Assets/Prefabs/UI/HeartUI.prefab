@@ -75,6 +75,111 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartFill: {fileID: 1710079808750562}
+  popInTime: 0.75
+  popInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -0.0004785061
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.013871917
+      value: -0.010155983
+      inSlope: 0.46018746
+      outSlope: 0.46018746
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.04079666
+      value: 0.009173802
+      inSlope: 0.048330404
+      outSlope: 0.048330404
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.0563172
+      value: 0.000898876
+      inSlope: 0.049000375
+      outSlope: 2.9575682
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.112819724
+      value: -0.0012601484
+      inSlope: -3.0331244
+      outSlope: 3.1173334
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.23458645
+      value: 0.006032735
+      inSlope: -3.219136
+      outSlope: 3.9345658
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.4825099
+      value: -0.0033343732
+      inSlope: -4.594163
+      outSlope: 5.8615003
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0006797
+      value: 0.99944925
+      inSlope: -5.8811417
+      outSlope: -0.64448655
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.11232092
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  centerFillTime: 0.5
+  centerFillCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  popParticle: {fileID: 0}
 --- !u!114 &114756949471653950
 MonoBehaviour:
   m_ObjectHideFlags: 1
