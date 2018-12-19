@@ -45,24 +45,29 @@ public class HealthUI : MonoBehaviour
         hearts = new List<HeartUI>();
         numHearts = playerHealth;
 
-        for (int i = 0; i < numHearts; i++)
+        int i = 0;
+        for (i = 0; i < numHearts; i++)
         {
-            HeartUI go = Instantiate(heartUIPrefab, this.transform).GetComponent<HeartUI>();
+            HeartUI go = Instantiate(heartUIPrefab, transform).GetComponent<HeartUI>();
 
             if (go)
             {
                 hearts.Add(go);
-                waitingOnSpawn = true;
-                go.Init(this);
-
-                while (waitingOnSpawn)
-                {
-                    yield return null;
-                }
+                go.Init();
             }
-
-            
         }
+
+        for (i = 0; i < hearts.Count; i++)
+        {
+            waitingOnSpawn = true;
+
+            hearts[i].StartAnimation(this);
+            while (waitingOnSpawn)
+            {
+                yield return null;
+            }
+        }
+
         UpdateHearts(playerHealth);
     }
 

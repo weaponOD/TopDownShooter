@@ -17,10 +17,15 @@ public class HeartUI : MonoBehaviour
 
     private Transform myTransform;
 
-    public void Init(HealthUI healthUI)
+    public void Init()
     {
         myTransform = transform;
         heartFill.transform.localScale = Vector3.zero;
+        myTransform.localScale = Vector3.zero;
+    }
+
+    public void StartAnimation(HealthUI healthUI)
+    {
         StartCoroutine(SpawnIn(healthUI));
     }
 
@@ -28,7 +33,7 @@ public class HeartUI : MonoBehaviour
     {
         float t = 0f;
 
-        Vector3 startScale = myTransform.localScale = Vector3.zero;
+        Vector3 startScale = myTransform.localScale;
 
         while(t < popInTime)
         {
