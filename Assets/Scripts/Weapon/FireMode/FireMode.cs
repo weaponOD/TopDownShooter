@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public abstract class FireMode {
+public abstract class FireMode
+{
     protected bool canShoot;
     protected bool shouldReset;
 
     protected float shootCount;
+    protected int maxAmmo;
+    protected int currentAmmo;
+    protected int currentClip;
+    protected int ammoPerClip;
+
+    private bool initialized;
 
     public FireMode()
     {
@@ -41,11 +48,16 @@ public abstract class FireMode {
         p.Init(damageLayer, firedByLayer);
     }
 
-    protected virtual void OnInputDown(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer) { }
+    protected virtual void OnInputDown(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer)
+    {
+        if (initialized == false)
+            Init(weaponSettings);
+    }
 
     protected virtual void OnInputHeld(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer) { }
 
-    protected virtual void OnInputUp(WeaponSettings weaponSettings) {
+    protected virtual void OnInputUp(WeaponSettings weaponSettings)
+    {
         if (shouldReset == true)
             return;
 
@@ -58,7 +70,7 @@ public abstract class FireMode {
         if (canShoot == true || shouldReset == false)
             return;
 
-        if(shootCount < weaponSettings.weaponInfo.fireRate)
+        if (shootCount < weaponSettings.weaponInfo.fireRate)
         {
             shootCount += Time.deltaTime;
             return;
@@ -67,5 +79,15 @@ public abstract class FireMode {
         shootCount = 0f;
         canShoot = true;
         shouldReset = false;
+    }
+
+    private void Init(WeaponSettings weaponSettings)
+    {
+        initialized = true;
+        maxAmmo = weaponSettings.weaponInfo.maxAmmo;
+        currentAmmo = weaponSettings.currentAmmo;
+        ammoPerClip = weaponSettings.weaponInfo.ammoPerClip;
+
+
     }
 }
