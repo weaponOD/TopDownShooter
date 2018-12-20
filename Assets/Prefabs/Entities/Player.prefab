@@ -463,6 +463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSettings: {fileID: 11400000, guid: 702e75a081bdebd45a63cc4d64abf429, type: 2}
+  sprites: {fileID: 4027018269091578}
   moveSpeed: 2
   horizontalRayCount: 4
   verticalRayCount: 4
@@ -473,8 +474,9 @@ MonoBehaviour:
   damageLayer:
     serializedVersion: 2
     m_Bits: 256
-  playerSprite: {fileID: 4027018269091578}
   weaponSprite: {fileID: 4778484017375588}
+  heartTag: Hearts
+  ammoTag: Ammo
 --- !u!114 &114834359775510594
 MonoBehaviour:
   m_ObjectHideFlags: 1

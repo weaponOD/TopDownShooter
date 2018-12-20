@@ -21,14 +21,18 @@ public class PlayerWeapon : MonoBehaviour
     private FireModeFactory fireModeFactory;
     private FireMode currentFireMode;
 
+    private AmmoUI ammoUI;
     private int weaponIndex;
 
-    public void Init(Transform weapon, int startingWeaponId, LayerMask damageLayer)
+    public void Init(Transform weapon, int startingWeaponId, LayerMask damageLayer, AmmoUI ammoUI)
     {
         this.weapon = weapon;
         weaponBarrel = weapon.GetChild(0);
         weaponSprite = weapon.GetComponent<SpriteRenderer>();
         this.damageLayer = damageLayer;
+
+        this.ammoUI = ammoUI;
+        ammoUI.Init();
 
         fireModeFactory = new FireModeFactory();
 
@@ -76,7 +80,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void ShootInput(KeyInputType inputType)
     {
-        currentFireMode.Shoot(currentWeapon, weaponBarrel, damageLayer, gameObject.layer, inputType);
+        currentFireMode.Shoot(currentWeapon, weaponBarrel, damageLayer, gameObject.layer, inputType, ammoUI);
     }
 
     private void UpdateCurrnetWeapon()
@@ -91,5 +95,7 @@ public class PlayerWeapon : MonoBehaviour
 
         if (weaponIndex >= weapons.Count)
             weaponIndex = 0;
+
+        ammoUI.UpdateWeapon(currentWeapon);
     }
 }

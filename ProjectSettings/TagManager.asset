@@ -6,6 +6,7 @@ TagManager:
   tags:
   - projectile
   - Hearts
+  - Ammo
   layers:
   - Default
   - TransparentFX

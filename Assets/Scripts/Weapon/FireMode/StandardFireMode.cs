@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class StandardFireMode : FireMode
 {
-    protected override void OnInputDown(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer)
+    protected override void OnInputDown(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer, AmmoUI ammoUI)
     {
-        base.OnInputDown(weaponSettings, weaponBarrel, damageLayer, firedByLayer);
+        base.OnInputDown(weaponSettings, weaponBarrel, damageLayer, firedByLayer, ammoUI);
         if (canShoot == false)
             return;
 
         canShoot = false;
 
-        if(weaponSettings.weaponInfo.projectile == null)
+        if (weaponSettings.weaponInfo.projectile == null)
         {
             Debug.LogWarning("Trying to shoot a weapon with no projectile!");
             return;
         }
 
+        currentClip--;
+
+        if (currentAmmo > 0)
+            currentAmmo--;
+
+        ammoUI.UpdateCurrentAmmo(currentAmmo);
+
         SpawnProjectile(weaponSettings, weaponBarrel, damageLayer, firedByLayer);
     }
-    
-    protected override void OnInputHeld(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer)
+
+    protected override void OnInputHeld(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer, AmmoUI ammoUI)
     {
         if (shouldReset == true)
             return;

@@ -24,15 +24,15 @@ public abstract class FireMode
         UpdateShootReset(weaponSettings);
     }
 
-    public void Shoot(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer, KeyInputType inputType)
+    public void Shoot(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer, KeyInputType inputType, AmmoUI ammoUI)
     {
         switch (inputType)
         {
             case KeyInputType.Down:
-                OnInputDown(weaponSettings, weaponBarrel, damageLayer, firedByLayer);
+                OnInputDown(weaponSettings, weaponBarrel, damageLayer, firedByLayer, ammoUI);
                 break;
             case KeyInputType.Held:
-                OnInputHeld(weaponSettings, weaponBarrel, damageLayer, firedByLayer);
+                OnInputHeld(weaponSettings, weaponBarrel, damageLayer, firedByLayer, ammoUI);
                 break;
             case KeyInputType.Up:
                 OnInputUp(weaponSettings);
@@ -48,13 +48,13 @@ public abstract class FireMode
         p.Init(damageLayer, firedByLayer);
     }
 
-    protected virtual void OnInputDown(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer)
+    protected virtual void OnInputDown(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer, AmmoUI ammoUI)
     {
         if (initialized == false)
             Init(weaponSettings);
     }
 
-    protected virtual void OnInputHeld(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer) { }
+    protected virtual void OnInputHeld(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer, AmmoUI ammoUI) { }
 
     protected virtual void OnInputUp(WeaponSettings weaponSettings)
     {

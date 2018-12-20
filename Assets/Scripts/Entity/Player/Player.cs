@@ -24,6 +24,7 @@ public class Player : Entity
 
     [Header("UI")]
     [SerializeField] private string heartTag;
+    [SerializeField] private string ammoTag;
 
     private Controller2D controller;
     private PlayerSprites playerSprites;
@@ -31,6 +32,7 @@ public class Player : Entity
     private PlayerWeapon playerWeapon;
 
     private HealthUI healthUI;
+    private AmmoUI ammoUI;
 
     public override void Init()
     {
@@ -46,7 +48,7 @@ public class Player : Entity
         playerAnimation.Init();
 
         playerWeapon = GetComponent<PlayerWeapon>();
-        playerWeapon.Init(weaponSprite, startingWeaponId, damageLayer);
+        playerWeapon.Init(weaponSprite, startingWeaponId, damageLayer, GameObject.FindWithTag(ammoTag).GetComponent<AmmoUI>());
 
         healthUI = GameObject.FindWithTag(heartTag).GetComponent<HealthUI>();
         healthUI.Init(healthSettings.maxHealth);

@@ -22,6 +22,10 @@ public class WeaponInfo
     public int projectileNumber;
     public FireType fireType; // This might make more sense in projectile
 
+    [Header("UI")]
+    public Sprite projectileSprite;
+    public Sprite usedProjectileSprite;
+
     [Header("Other Settings")]
     public Sprite weaponSprite;
     public AudioClip fireSound;
