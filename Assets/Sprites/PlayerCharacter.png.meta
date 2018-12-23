@@ -15,6 +15,8 @@ TextureImporter:
     21300020: heartInner
     21300022: heartouter
     21300024: EnemyProjectile
+    21300026: Infinity
+    21300028: Arrow
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -327,7 +329,7 @@ TextureImporter:
         width: 260
         height: 260
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -343,11 +345,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1688
-        y: 1088
-        width: 260
-        height: 260
+        y: 1101
+        width: 302
+        height: 247
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -367,13 +369,53 @@ TextureImporter:
         width: 465
         height: 483
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: e8d88a297990b904c807ecbf27f49b38
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Infinity
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 1640
+        width: 260
+        height: 146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93db111077fee7b46bcf0be9310dc444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 1451
+        width: 135
+        height: 198
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b17e1a3834e548488c9c02c09985263
       vertices: []
       indices: 
       edges: []
