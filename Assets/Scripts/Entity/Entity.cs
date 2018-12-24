@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour {
+public class Entity : MonoBehaviour
+{
     [Header("Health Settings")]
     [SerializeField] protected HealthSettings healthSettings;
 
@@ -16,7 +17,8 @@ public class Entity : MonoBehaviour {
     private bool flashing;
     private List<SpriteRenderer> spriteRenderers;
 
-    public virtual void Init() {
+    public virtual void Init()
+    {
         health = new Health(healthSettings.maxHealth, this);
 
         spriteRenderers = new List<SpriteRenderer>();
@@ -27,7 +29,7 @@ public class Entity : MonoBehaviour {
     {
         health.Damage(amount);
 
-        if(flashing == false)
+        if (flashing == false)
             StartCoroutine(DamageFlash());
 
         if (healthSettings.damageParticle)
@@ -60,14 +62,17 @@ public class Entity : MonoBehaviour {
 
         for (int i = 0; i < spriteRenderers.Count; i++)
         {
-            spriteRenderers[i].color = healthSettings.damageFlashColour;
+            Color colour = new Color(healthSettings.damageFlashColour.r, healthSettings.damageFlashColour.g,
+                healthSettings.damageFlashColour.a, spriteRenderers[i].color.a);
+            spriteRenderers[i].color = colour;
         }
 
         yield return new WaitForSeconds(healthSettings.damageFlashTime);
 
         for (int i = 0; i < spriteRenderers.Count; i++)
         {
-            spriteRenderers[i].color = Color.white;
+            Color colour = new Color(1, 1, 1, spriteRenderers[i].color.a);
+            spriteRenderers[i].color = colour;
         }
 
         flashing = false;

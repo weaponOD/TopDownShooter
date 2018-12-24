@@ -47,6 +47,6 @@ public class PlayerSprites : MonoBehaviour
         Vector3 dir = Input.mousePosition - pos;
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        weaponSprite.rotation = Quaternion.AngleAxis(weaponSprite.localScale.x > 0 ? angle : angle - 180f, Vector3.forward);
+        weaponSprite.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

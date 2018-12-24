@@ -28,10 +28,20 @@ public class ProjectileUI : MonoBehaviour
     public void ProjectileUsed()
     {
         spriteImage.sprite = projectileUsedSprite;
+
+        if (projectileUsedSprite == null)
+            spriteImage.color = Color.clear;
+        else
+            spriteImage.color = Color.white;
     }
 
     public void Reloaded()
     {
         spriteImage.sprite = projectileAvailableSprite;
+
+        if (projectileAvailableSprite == null)
+            spriteImage.color = Color.clear;
+        else
+            spriteImage.color = Color.white;
     }
 }
