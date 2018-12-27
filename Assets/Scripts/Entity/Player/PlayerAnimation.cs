@@ -15,13 +15,28 @@ public class PlayerAnimation : MonoBehaviour
     {
         InputController.AxisUp += OnAxisUp;
         InputController.AxisInput += OnAxisInput;
+        //InputController.ShootInput += OnShootInput;
     }
 
     private void OnDisable()
     {
         InputController.AxisUp += OnAxisUp;
         InputController.AxisInput -= OnAxisInput;
+        //InputController.ShootInput -= OnShootInput;
+
     }
+
+    /// <summary>
+    /// Plays shoot animation when firing projectile
+    /// </summary>
+    //private void OnShootInput()
+    //{
+    //    if (animator == null || animator.GetBool("moving") == false)
+    //          return;
+    //
+    //    animator.SetTrigger("shoot");
+    //}
+
 
     private void OnAxisUp()
     {
