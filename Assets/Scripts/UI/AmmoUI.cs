@@ -61,6 +61,14 @@ public class AmmoUI : MonoBehaviour
         ammoText.text = string.Format("{0} / {1}", currentAmmo, maxAmmo);
     }
 
+    public void Reloaded()
+    {
+        for (int i = 0; i < projectileImages.Count; i++)
+        {
+            projectileImages[i].Reloaded();
+        }
+    }
+
     public void UpdateWeapon(WeaponSettings weaponSettings)
     {
         maxAmmo = weaponSettings.weaponInfo.maxAmmo;

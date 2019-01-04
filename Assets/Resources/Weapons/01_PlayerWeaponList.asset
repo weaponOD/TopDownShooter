@@ -19,7 +19,7 @@ MonoBehaviour:
     fireRateAuto: 0.8
     maxAmmo: 0
     ammoPerClip: 5
-    reloadTime: 1
+    reloadTime: 0.8
     projectile: {fileID: 114575066513838916, guid: 11a2daffbb5fbdc44a7210458440a77d,
       type: 2}
     projectileNumber: 1

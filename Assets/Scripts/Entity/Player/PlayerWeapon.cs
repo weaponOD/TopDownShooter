@@ -45,7 +45,7 @@ public class PlayerWeapon : MonoBehaviour
         if (currentFireMode == null)
             return;
 
-        currentFireMode.Update(currentWeapon);
+        currentFireMode.Update(currentWeapon, ammoUI);
     }
 
     public void GiveNewWeaponById(int weaponId)
@@ -71,16 +71,23 @@ public class PlayerWeapon : MonoBehaviour
     private void OnEnable()
     {
         InputController.ShootInput += ShootInput;
+        InputController.ReloadInput += ReloadInput;
     }
 
     private void OnDisable()
     {
         InputController.ShootInput -= ShootInput;
+        InputController.ReloadInput -= ReloadInput;
     }
 
     private void ShootInput(KeyInputType inputType)
     {
         currentFireMode.Shoot(currentWeapon, weaponBarrel, damageLayer, gameObject.layer, inputType, ammoUI);
+    }
+
+    private void ReloadInput(KeyInputType inputType)
+    {
+        currentFireMode.Reload();
     }
 
     private void UpdateCurrnetWeapon()

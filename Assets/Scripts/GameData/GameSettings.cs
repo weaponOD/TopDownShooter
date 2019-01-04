@@ -10,4 +10,5 @@ public class GameSettings : ScriptableObject {
     [Header("PC Input")]
     public KeyCode shootKey;
     public KeyCode dodgeKey;
+    public KeyCode reloadKey;
 }

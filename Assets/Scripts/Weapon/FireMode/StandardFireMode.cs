@@ -10,22 +10,32 @@ public class StandardFireMode : FireMode
         if (canShoot == false)
             return;
 
-        canShoot = false;
-
         if (weaponSettings.weaponInfo.projectile == null)
         {
             Debug.LogWarning("Trying to shoot a weapon with no projectile!");
             return;
         }
 
-        currentClip--;
+        // If we have ammo or if we are using a weapon with unlimited ammo
+        if (currentAmmo > 0 || currentAmmo >= 0 && maxAmmo == 0)
+        {
+            if(currentClip > 0)
+            {
+                canShoot = false;
 
-        if (currentAmmo > 0)
-            currentAmmo--;
+                currentClip--;
 
-        ammoUI.UpdateCurrentAmmo(currentAmmo);
+                if (currentAmmo > 0)
+                    currentAmmo--;
 
-        SpawnProjectile(weaponSettings, weaponBarrel, damageLayer, firedByLayer);
+                ammoUI.UpdateCurrentAmmo(currentClip);
+                SpawnProjectile(weaponSettings, weaponBarrel, damageLayer, firedByLayer);
+            }
+            else
+            {
+                Reload();
+            }
+        }
     }
 
     protected override void OnInputHeld(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer, AmmoUI ammoUI)
@@ -40,6 +50,22 @@ public class StandardFireMode : FireMode
         }
 
         shootCount = 0f;
-        SpawnProjectile(weaponSettings, weaponBarrel, damageLayer, firedByLayer);
+
+        // If we have ammo or if we are using a weapon with unlimited ammo
+        if (currentAmmo > 0 || currentAmmo >= 0 && maxAmmo == 0)
+        {
+            if (currentClip > 0)
+            {
+                canShoot = false;
+
+                currentClip--;
+
+                if (currentAmmo > 0)
+                    currentAmmo--;
+
+                ammoUI.UpdateCurrentAmmo(currentClip);
+                SpawnProjectile(weaponSettings, weaponBarrel, damageLayer, firedByLayer);
+            }
+        }
     }
 }

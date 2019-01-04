@@ -14,14 +14,18 @@ public abstract class FireMode
 
     private bool initialized;
 
+    protected bool reloading;
+    protected float reloadCount;
+
     public FireMode()
     {
         canShoot = true;
     }
 
-    public void Update(WeaponSettings weaponSettings)
+    public void Update(WeaponSettings weaponSettings, AmmoUI ammoUI)
     {
         UpdateShootReset(weaponSettings);
+        UpdateReload(weaponSettings, ammoUI);
     }
 
     public void Shoot(WeaponSettings weaponSettings, Transform weaponBarrel, LayerMask damageLayer, LayerMask firedByLayer, KeyInputType inputType, AmmoUI ammoUI)
@@ -67,7 +71,7 @@ public abstract class FireMode
 
     protected virtual void UpdateShootReset(WeaponSettings weaponSettings)
     {
-        if (canShoot == true || shouldReset == false)
+        if (canShoot == true || shouldReset == false || reloading)
             return;
 
         if (shootCount < weaponSettings.weaponInfo.fireRate)
@@ -81,6 +85,38 @@ public abstract class FireMode
         shouldReset = false;
     }
 
+    public virtual void Reload()
+    {
+        if (currentClip == ammoPerClip)
+            return;
+
+        reloading = true;
+        canShoot = false;
+    }
+
+    protected virtual void UpdateReload(WeaponSettings weaponSettings, AmmoUI ammoUI)
+    {
+        if (reloading == false)
+            return;
+
+        if(reloadCount < weaponSettings.weaponInfo.reloadTime)
+        {
+            reloadCount += Time.deltaTime;
+            return;
+        }
+
+        reloading = false;
+        reloadCount = 0f;
+        canShoot = true;
+
+        if (currentAmmo < ammoPerClip && maxAmmo != 0)
+            currentClip = currentAmmo;
+        else
+            currentClip = ammoPerClip;
+
+        ammoUI.Reloaded();
+    }
+
     private void Init(WeaponSettings weaponSettings)
     {
         initialized = true;
@@ -88,6 +124,9 @@ public abstract class FireMode
         currentAmmo = weaponSettings.currentAmmo;
         ammoPerClip = weaponSettings.weaponInfo.ammoPerClip;
 
-
+        if (currentAmmo < ammoPerClip && maxAmmo != 0)
+            currentClip = currentAmmo;
+        else
+            currentClip = ammoPerClip;
     }
 }

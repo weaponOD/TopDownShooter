@@ -13,4 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTag: Player
   shootKey: 323
-  dodgeKey: 304
+  dodgeKey: 324
+  reloadKey: 114

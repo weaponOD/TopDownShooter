@@ -10,6 +10,7 @@ public class InputController : MonoBehaviour
     public static event Action<Vector2> AxisInput = delegate { };
     public static event Action AxisUp = delegate { };
     public static event Action<KeyInputType> ShootInput = delegate { };
+    public static event Action<KeyInputType> ReloadInput = delegate { };
     public static event Action<KeyInputType> DodgeInput = delegate { };
     public static event Action<Vector2> CursorInput = delegate { };
 
@@ -31,6 +32,7 @@ public class InputController : MonoBehaviour
         CheckAxisInput();
         CheckShootInput();
         CheckDodgeInput();
+        CheckReloadInput();
         CheckCursorInput();
     }
 
@@ -47,22 +49,32 @@ public class InputController : MonoBehaviour
 
     private void CheckShootInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(gameSettings.shootKey))
             ShootInput.Invoke(KeyInputType.Down);
-        else if (Input.GetMouseButton(0))
+        else if (Input.GetKey(gameSettings.shootKey))
             ShootInput.Invoke(KeyInputType.Held);
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetKeyUp(gameSettings.shootKey))
             ShootInput.Invoke(KeyInputType.Up);
     }
 
     private void CheckDodgeInput()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(gameSettings.shootKey))
             DodgeInput.Invoke(KeyInputType.Down);
-        else if (Input.GetMouseButton(1))
+        else if (Input.GetKey(gameSettings.shootKey))
             DodgeInput.Invoke(KeyInputType.Held);
-        else if (Input.GetMouseButtonUp(1))
+        else if (Input.GetKeyUp(gameSettings.shootKey))
             DodgeInput.Invoke(KeyInputType.Up);
+    }
+
+    private void CheckReloadInput()
+    {
+        if (Input.GetKeyDown(gameSettings.reloadKey))
+            ReloadInput.Invoke(KeyInputType.Down);
+        else if (Input.GetKey(gameSettings.reloadKey))
+            ReloadInput.Invoke(KeyInputType.Held);
+        else if (Input.GetKeyUp(gameSettings.reloadKey))
+            ReloadInput.Invoke(KeyInputType.Up);
     }
 
     private void CheckCursorInput()
