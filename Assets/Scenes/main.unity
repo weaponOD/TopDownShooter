@@ -369,6 +369,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114662104837136948, guid: 0e4278edbbf89914687a41772d4d1e91,
+        type: 2}
+      propertyPath: dodgeSpeed
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e4278edbbf89914687a41772d4d1e91, type: 2}
   m_IsPrefabAsset: 0

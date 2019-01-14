@@ -59,11 +59,11 @@ public class InputController : MonoBehaviour
 
     private void CheckDodgeInput()
     {
-        if (Input.GetKeyDown(gameSettings.shootKey))
+        if (Input.GetKeyDown(gameSettings.dodgeKey))
             DodgeInput.Invoke(KeyInputType.Down);
-        else if (Input.GetKey(gameSettings.shootKey))
+        else if (Input.GetKey(gameSettings.dodgeKey))
             DodgeInput.Invoke(KeyInputType.Held);
-        else if (Input.GetKeyUp(gameSettings.shootKey))
+        else if (Input.GetKeyUp(gameSettings.dodgeKey))
             DodgeInput.Invoke(KeyInputType.Up);
     }
 

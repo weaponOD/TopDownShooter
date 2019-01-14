@@ -466,6 +466,8 @@ MonoBehaviour:
   healthSettings: {fileID: 11400000, guid: 702e75a081bdebd45a63cc4d64abf429, type: 2}
   sprites: {fileID: 4027018269091578}
   moveSpeed: 2
+  dodgeSpeed: 5
+  dodgeTime: 0.3
   horizontalRayCount: 4
   verticalRayCount: 4
   collisionMask:
